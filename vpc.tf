@@ -66,7 +66,7 @@ resource "aws_security_group" "rcc_SG" {
 //create inbound rules for security group
 resource "aws_vpc_security_group_ingress_rule" "rcc_inbound_rules" {
   security_group_id = aws_security_group.rcc_SG.id
-  cidr_ipv4         = aws_vpc.rcc_vpc.cidr_block
+  cidr_ipv4         = "0.0.0.0/0" //aws_vpc.rcc_vpc.cidr_block
   from_port         = 5001
   ip_protocol       = "tcp"
   to_port           = 5001
