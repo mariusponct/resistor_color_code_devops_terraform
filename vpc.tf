@@ -15,12 +15,24 @@ resource "aws_vpc" "rcc_vpc" {
 //create subnet
 resource "aws_subnet" "rcc_subnet" {
   vpc_id                  = aws_vpc.rcc_vpc.id
-  cidr_block              = "10.0.1.0/24"
+  cidr_block              = "10.0.0.0/24"
   availability_zone       = "eu-central-1a"
   map_public_ip_on_launch = true
 
   tags = {
     Name = "resistor_color_code-subnet"
+  }
+}
+
+//create subnet_2
+resource "aws_subnet" "rcc_subnet_2" {
+  vpc_id                  = aws_vpc.rcc_vpc.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "eu-central-1b"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "resistor_color_code-subnet-2"
   }
 }
 
@@ -50,6 +62,12 @@ resource "aws_route_table" "rcc_rt" {
 //associate subnet to route_table
 resource "aws_route_table_association" "rcc_rt_association" {
   subnet_id      = aws_subnet.rcc_subnet.id
+  route_table_id = aws_route_table.rcc_rt.id
+}
+
+//associate subnet to route_table_2
+resource "aws_route_table_association" "rcc_rt_association_2" {
+  subnet_id      = aws_subnet.rcc_subnet_2.id
   route_table_id = aws_route_table.rcc_rt.id
 }
 
