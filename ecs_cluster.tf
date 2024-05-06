@@ -46,5 +46,12 @@ resource "aws_ecs_service" "rcc-service" {
     security_groups  = [aws_security_group.rcc_SG.id]
     assign_public_ip = true
   }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.rcc-tg.arn
+    container_name   = "resistor_color_code"
+    container_port   = 5001 # Port on which your container is listening
+  }
 }
+
 
