@@ -50,7 +50,7 @@ resource "aws_ecs_service" "rcc-service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.rcc-tg.arn
     container_name   = "resistor_color_code"
-    container_port   = 5001 # Port on which your container is listening
+    container_port   = 5001
   }
 }
 
