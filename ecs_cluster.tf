@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "rcc-td" {
 [
   {
     "name": "resistor_color_code",
-    "image": "docker.io/mariuspnct/resistorapp:fbe03f6",
+    "image": "docker.io/mariuspnct/resistorapp:8112c80",
     "cpu": 256,
     "memory": 512,
     "essential": true,
